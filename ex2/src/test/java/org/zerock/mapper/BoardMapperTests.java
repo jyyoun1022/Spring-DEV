@@ -1,11 +1,16 @@
 package org.zerock.mapper;
 
+import java.util.List;
+
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.zerock.domain.BoardVO;
+import org.zerock.domain.Criteria;
+
+import com.mysql.cj.xdevapi.Schema.CreateCollectionOptions;
 
 import lombok.extern.log4j.Log4j;
 
@@ -49,7 +54,7 @@ public class BoardMapperTests {
 	@Test
 	public void testRead() {
 		//존재하는 게시물 번호로 테스트
-		BoardVO board = mapper.read(6l);
+		BoardVO board = mapper.read(759l);
 		
 		log.info(board);
 		
@@ -72,6 +77,16 @@ public class BoardMapperTests {
 		int count= mapper.update(board);
 		log.info("UPDATE COUNT: " + count);
 		log.info("몇번째 게시글 번호 입니까?  :  "+board.getBno());
+	}
+	
+	@Test
+	public void testPaging() {
+		Criteria criteria = new Criteria();
+		criteria.setPageNum(10);
+		criteria.setSize(10);
+		List<BoardVO> list = mapper.getListWithPaging(criteria);
+		
+		list.forEach(board->log.info(board));
 	}
 	
 	

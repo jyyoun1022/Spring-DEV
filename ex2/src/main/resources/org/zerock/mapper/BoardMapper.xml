@@ -42,5 +42,9 @@
 		
 		insert into tbl_board(bno,title,content,writer)
 		values (#{bno}, #{title}, #{content},#{writer})
-	</insert> 
+	</insert>
+	
+	<select id="getListWithPaging" resultType="org.zerock.domain.BoardVO">
+		select * from tbl_board order by bno desc limit 10
+	</select> 
 </mapper>
