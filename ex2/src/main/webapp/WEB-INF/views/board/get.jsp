@@ -41,15 +41,18 @@
 				<div>
 				<div class="form-group">
             		<label><b>regDate</b></label>
-            		<input type="text" class="form-control"  value='<c:out value="${board.regDate}"/>' readonly>
+            		<input  class="form-control"   value='<fmt:formatDate pattern="yyyy/MM/dd" value="${board.modDate}" />' readonly>
             		<div class="form-group">
             		<label><b>modDate</b></label>
-            		<input type="text" class="form-control"   value='<c:out value="${board.modDate}"/>' readonly>
-        		</div>
+            		<input  class="form-control"   value='<fmt:formatDate pattern="yyyy/MM/dd" value="${board.modDate}" />' readonly>
         		</div>
 				</div>
-				<button data-oper='modify' class="btn btn-default" onclick="location.href='/board/modify?bno=<c:out value="${board.bno}"/>'">Modify</button>
+				<button data-oper='modify' class="btn btn-default" >Modify</button>
 				<button data-oper='list' class="btn btn-info" onclick="location.href='/board/list'">Go To List</button>
+				<form id='operForm' action='/board/modify' method="get">
+					<input type='hidden' id="bno" name="bno" value='<c:out value="${voard.bno }"/>'>
+					
+				</form>
 				</div>
 				
 			

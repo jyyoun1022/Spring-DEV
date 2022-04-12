@@ -49,10 +49,10 @@ public class BoardController {
 		return "redirect:/board/list";
 	}
 	
-	@GetMapping("/get")
+	@GetMapping({"/get","/modify"})
 	public void get(@RequestParam("bno")Long bno,Model model) {
 		
-		log.info("/get");
+		log.info("/get or modify");
 		
 		model.addAttribute("board",service.get(bno));
 	}
@@ -70,7 +70,7 @@ public class BoardController {
 	@PostMapping("/remove")
 	public String remove(@RequestParam("bno")Long bno,RedirectAttributes re)throws Exception {
 		log.info("=============+");
-		log.info(bno);
+		log.info("삭제된게시글 번호 : "+bno);
 		if(service.remove(bno)) {
 			re.addFlashAttribute("result","success");
 		}

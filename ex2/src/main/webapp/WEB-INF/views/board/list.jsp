@@ -98,19 +98,17 @@
 		
 		checkModal(result);
 		
+		history.replaceState({},null,null);
+		
+		
 		function checkModal(result) { 
-			console.log("1");
-			if (result ==='') {
-			console.log("여기는 찍혀?");
+			if (result ==='' || history.state) {
 				return;
 			}
-			console.log("2");
 			if(parseInt(result)>0){
 				$(".modal-body").html("게시글 "+parseInt(result) + " 번이 등록되었습니다.");
 			}
-			console.log("3");
 			$("#myModal").modal("show");
-			console.log("4");
 		}
 		$("#regBtn").on("click",function(){
 			self.location = "/board/register";
