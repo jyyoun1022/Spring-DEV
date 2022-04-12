@@ -1,5 +1,6 @@
 package org.zerock.controller;
 
+import org.apache.ibatis.javassist.expr.NewArray;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -9,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.zerock.domain.BoardVO;
 import org.zerock.domain.Criteria;
+import org.zerock.domain.PageDTO;
 import org.zerock.service.BoardService;
 
 import lombok.RequiredArgsConstructor;
@@ -29,6 +31,11 @@ public class BoardController {
 		
 		log.info("list 메서드 시작");
 		model.addAttribute("list",service.getList(criteria));
+		log.info("pageNum"+criteria.getPageNum());
+		log.info("size"+criteria.getSize());
+		log.info("skip"+criteria.getSkip());
+		model.addAttribute("pageMaker",new PageDTO(criteria,123));
+		log.info(new PageDTO(criteria, 123));
 		
 	}
 	

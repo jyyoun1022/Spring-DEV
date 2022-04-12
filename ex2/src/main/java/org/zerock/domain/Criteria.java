@@ -23,6 +23,6 @@ public class Criteria {
 	}
 	
 	public int getSkip() {
-		return this.pageNum = (pageNum-1) * size;
+		return (pageNum-1) * size;
 	}
 }
