@@ -22,7 +22,7 @@ public class Criteria {
 		this.size=size;
 	}
 	
-	public void getSkip() {
-		this.pageNum = (pageNum-1) * size;
+	public int getSkip() {
+		return this.pageNum = (pageNum-1) * size;
 	}
 }

@@ -45,6 +45,6 @@
 	</insert>
 	
 	<select id="getListWithPaging" resultType="org.zerock.domain.BoardVO">
-		select * from tbl_board order by bno desc limit 10
+		select * from tbl_board order by bno desc limit ${skip},${size}
 	</select> 
 </mapper>
