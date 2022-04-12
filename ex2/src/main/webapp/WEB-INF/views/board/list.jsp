@@ -39,7 +39,10 @@
 						<tr>
 							<td><c:out value="${board.bno}" /></td>
 							<td>
-									<c:out value="${board.title}" />
+								<a href='/board/get?bno=<c:out value="${board.bno }"/>'>
+								<c:out value="${board.title}" />
+								</a>
+									
 							</td>
 							<td><c:out value="${board.writer}" /></td>
 							<td><fmt:formatDate pattern="yyyy-MM-dd" value="${board.regDate}" /></td>

@@ -49,7 +49,7 @@
         		</div>
 				</div>
 				<button data-oper='modify' class="btn btn-default" onclick="location.href='/board/modify?bno=<c:out value="${board.bno}"/>'">Modify</button>
-				<button data-oper='list' class="btn btn-info" onclcik="location.href='/board/list'">Go To List</button>
+				<button data-oper='list' class="btn btn-info" onclick="location.href='/board/list'">Go To List</button>
 				</div>
 				
 			
