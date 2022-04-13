@@ -13,6 +13,10 @@ public class Criteria {
 	
 	private int size;
 	
+	private String type;
+	private String keyword;
+	
+	
 	public Criteria(){
 		this(1,10);
 	}
@@ -24,5 +28,10 @@ public class Criteria {
 	
 	public int getSkip() {
 		return (pageNum-1) * size;
+	}
+	
+	public String[] getTypeArr() {
+		
+		return type == null? new String[] {} : type.split("");
 	}
 }
