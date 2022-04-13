@@ -4,6 +4,7 @@ import org.apache.ibatis.javassist.expr.NewArray;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -31,10 +32,8 @@ public class BoardController {
 		
 		log.info("list 메서드 시작");
 		model.addAttribute("list",service.getList(criteria));
-		log.info("pageNum"+criteria.getPageNum());
-		log.info("size"+criteria.getSize());
-		log.info("skip"+criteria.getSkip());
-		model.addAttribute("pageMaker",new PageDTO(criteria,123));
+		int total = service.getTotal(criteria);
+		model.addAttribute("pageMaker",new PageDTO(criteria,total));
 		log.info(new PageDTO(criteria, 123));
 		
 	}
@@ -58,7 +57,7 @@ public class BoardController {
 	}
 	
 	@GetMapping({"/get","/modify"})
-	public void get(@RequestParam("bno")Long bno,Model model) {
+	public void get(@RequestParam("bno")Long bno,Model model,@ModelAttribute("cri")Criteria cri) {
 		
 		log.info("/get or modify");
 		
@@ -66,22 +65,26 @@ public class BoardController {
 	}
 	
 	@PostMapping("/modify")
-	public String modify(BoardVO board,RedirectAttributes re) {
+	public String modify(BoardVO board, @ModelAttribute("cri") Criteria cri, RedirectAttributes re) {
 		log.info(board);
 		
 		if(service.modify(board)) {
 			re.addFlashAttribute("result","success");
 		}
+		re.addAttribute("pageNum",cri.getPageNum());
+		re.addAttribute("size",cri.getSize());
 		return "redirect:/board/list";
 	}
 	
 	@PostMapping("/remove")
-	public String remove(@RequestParam("bno")Long bno,RedirectAttributes re)throws Exception {
+	public String remove(@RequestParam("bno")Long bno,@ModelAttribute("cri") Criteria cri, RedirectAttributes re)throws Exception {
 		log.info("=============+");
 		log.info("삭제된게시글 번호 : "+bno);
 		if(service.remove(bno)) {
 			re.addFlashAttribute("result","success");
 		}
+		re.addAttribute("pageNum",cri.getPageNum());
+		re.addAttribute("size",cri.getSize());
 		return "redirect:/board/list";
 	}
 	
