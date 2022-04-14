@@ -127,6 +127,7 @@
 			</exclusions>
 			
 		</dependency>
+		
 
 		<!-- @Inject -->
 		<dependency>
