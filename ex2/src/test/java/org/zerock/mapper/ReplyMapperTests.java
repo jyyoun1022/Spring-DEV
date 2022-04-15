@@ -52,12 +52,12 @@ public class ReplyMapperTests {
 		
 		log.info(read);
 	}
-	@Test
-	public void testDelete() {
-		
-		mapper.delete(11);
-		
-	}
+//	@Test
+//	public void testDelete() {
+//		
+//		mapper.delete(11);
+//		
+//	}
 	@Test
 	public void testUpdate() {
 		
