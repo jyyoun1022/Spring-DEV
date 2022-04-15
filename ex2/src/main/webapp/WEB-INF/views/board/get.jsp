@@ -87,5 +87,25 @@
 		operForm.find("#bno").remove();
 		operForm.attr("action","/board/list").submit();
 	});
-	})
+	
+	
+	
+		console.log(replyService)	;
+		
+	console.log("===============");
+	console.log("JS TEST");
+
+	var bnoValue = '<c:out value="${board.bno}"/>';
+
+	//for replyService add test
+	 replyService.add(
+	    
+	    {reply:"JS Test", replyer:"tester", bno:bnoValue}
+	    ,
+	    function(result){ 
+	      alert("RESULT: " + result);
+	    }
+	);
+				
+	});
 </script>				
